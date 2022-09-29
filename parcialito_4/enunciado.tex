@@ -1,0 +1,159 @@
+\documentclass[12pt]{amsart}
+
+\addtolength{\hoffset}{-2.25cm}
+\addtolength{\textwidth}{4.5cm}
+\addtolength{\voffset}{-2.0cm}
+\addtolength{\textheight}{5cm}
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{15pt}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage{multicol}
+%\usepackage{ marvosym }
+\usepackage{wasysym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\usepackage{tabularx}
+\usepackage{color, colortbl}
+
+\usepackage{ulem}
+
+\usepackage[framemethod=TikZ]{mdframed}
+
+\mdfdefinestyle{MyFrame}{%
+    linecolor=blue,
+    outerlinewidth=2pt,
+    roundcorner=20pt,
+    innertopmargin=\baselineskip,
+    innerbottommargin=\baselineskip,
+    innerrightmargin=20pt,
+    innerleftmargin=20pt,
+    backgroundcolor=white!50!white}
+
+\tikzstyle{mybox} = [draw=blue, fill=blue!10, very thick,
+    rectangle, rounded corners, inner sep=8pt, inner ysep=13pt]
+\tikzstyle{fancytitle} =[fill=blue, text=white, rounded corners]
+
+%\newcommand{\ds}{\displaystyle}
+
+\setlength{\parindent}{0in}
+
+\pagestyle{empty}
+
+% ----------------------------
+
+% The "stuff" above here is called the preamble of the document.  It sets the margins and loads special packages.  Probably the only reason you would need to edit something above here would be to add a package to do something very specific... but probably everything you need is loaded already
+
+% -----------------------------
+
+\begin{document}
+
+\thispagestyle{empty}
+
+{\scshape Base de Datos 75.15/75.28/95.05} \hfill {\scshape Facultad de Ingenierí­a (UBA)} \hfill
+
+\smallskip
+
+\hrule
+
+\bigskip
+
+\centering{\scshape Parcialito de SQL}
+
+\vspace{0.5cm}
+\begin{enumerate}
+
+\item Considerando los esquemas del dataset de notas visto en clase, resuelva los siguientes puntos escribiendo para cada uno de ellos una única consulta SQL que devuelva el resultado pedido:
+\newline 
+\textit{\emph{Nota:} En la segunda página de este documento puede encontrar una descripción del dataset}
+
+\vspace{0.5cm}
+
+\begin{enumerate}[label = \textit{\alph*)}]
+
+\item Obtener el padrón y apellido de el/los estudiante/s que tenga/n la mayor cantidad de materias aprobadas. \newline
+\textit{\emph{Nota:} Considerar la posibilidad de que sean más de uno}
+
+
+\vspace{0.5cm}
+
+\item Obtener el padrón y apellido de aquellos estudiantes que tienen nota en las materias 71.14 y 71.15 y no tienen nota ni en la materia 75.01 ni en 75.15.
+
+\vspace{0.5cm}
+
+\item Para cada carrera y cada departamento, devuelva el código de carrera, código de departamento y promedio de notas que los estudiantes anotados en esa carrera tienen en materias de ese departamento. 
+\newline
+\textit{\emph{Nota:} no considerar combinaciones de departamento / carrera tal que no haya estudiantes de dicha carrera con notas en dicho departamento}
+
+\vspace{0.5cm}
+
+\item Mostrar el padrón, apellido y promedio para aquellos estudiantes que tienen nota en más de 3 materias y un promedio de al menos 5.
+
+\vspace{0.5cm}
+
+\item Para cada nota del estudiante más antiguo, mostrar su padrón, código de departamento, número de materia y el valor de la nota.\newline
+\textit{\emph{Nota:} En caso de que sean más de uno los estudiantes más antiguos, mostrar dichos datos para todos esos estudiantes}\newline
+\textit{\emph{Nota2:} Si bien en la práctica puede darse que los valores de padrón sean estrictamente crecientes en el tiempo no utilizar este criterio para determinar al estudiante \textbf{más antiguo}}
+
+\vspace{0.5cm}
+
+\item Listar el padrón de aquellos estudiantes que, por lo menos, tienen nota en todas las materias que aprobó el estudiante de padrón 71000.
+
+\vspace{0.5cm}
+\end{enumerate}
+
+En el Campus en la sección de Talleres encontrará el archivo ``base-ejemplo-facultad'', que es el dataset que puede utilizar para entender el contenido de la tablas y validar sus respuestas.
+
+\vspace{0.5cm}
+
+\item \textbf{BONUS TRACK} \textit{(opcional)}\footnote{No es obligatorio entregarlo. En caso de hacerlo, no resta nota si está incorrecto aunque puede mejorar la nota del parcialito si está bien resuelto} Resuelva el ejercicio 1a del Tema 1 del parcial del primer cuatrimestre de 2019 . Puede encontrar el enunciado en la sección de exámenes del campus, carpeta ``Parciales'', con el nombre de archivo ``2019 - 1C - Parcial T1''
+\vspace{0.5cm}
+
+{\footnotesize \underline{Nota:} Basta con entregar únicamente las consultas SQL que escribió. No es necesario que incluya las tablas resultado de las consultas en la entrega, aunque si quiere puede hacerlo. }
+
+\newpage
+\centering{\scshape Anexo: Dataset de notas }
+
+\vspace{1cm}
+\raggedright\paragraph{A continuación una pequeña descripción de las tablas pertenecientes al dataset. El mismo puede ser descargado desde  \href{https://github.com/bdd-fiuba/paricalitos/blob/main/parcialito_4/crear_datos_notas.sql}{este link}}
+\newline
+
+\begin{center}
+\begin{itemize}
+        \item \texttt{departamentos}: Código y nombre de los departamentos de la facultad.\\
+        \item \texttt{materias}: Código (de departamento), número y nombre de las materias en las que puede tener nota cada estudiante.\\
+        \item \texttt{estudiantes}: Varios datos de cada estudiante de la facultad, tengan o no notas registradas. Se tiene la fecha de ingreso a la facultad y un indicador de si es o no de intercambio.\\
+        \item \texttt{notas}: Registra todas las notas que hayan tenido los estudiantes y la fecha de cada una de ellas. Puede haber varias notas de un mismo estudiante y materia en caso de que no haya aprobado en la primer instancia.\\
+        \item \texttt{carreras}: Código y nombre de las carreras de la facultad.\\
+        \item \texttt{inscripto\_en}: Vincula a cada estudiante con la o las carreras en las que esté inscripto.\\
+\end{itemize}
+\end{center}
+
+\vspace{0.3cm}
+
+\begin{center}
+    \begin{tikzpicture}
+    \node [mybox] (box){%
+    \begin{minipage}{0.88\textwidth}
+    {
+El set de datos de prueba permite detectar si una consulta es incorrecta, ya sea por devolver datos incorrectos o por no devolver datos que debiera. En cambio, si los datos devueltos son correctos para este set de datos esto no garantiza que la consulta sea correcta, ya que para otro set de datos podría fallar. Es necesario que cada consulta hecha funcione no sólamente con el set de datos dado sino con cualquier otro posible set de datos con el mismo esquema.
+
+``No es posible comprobar \textit{TODAS} las entradas posibles para un programa dado''
+}
+    \end{minipage}
+    };
+    \node[fancytitle, right=10pt] at (box.north west) {\footnotesize Nota};
+    \end{tikzpicture}
+\end{center}
+
+\end{enumerate}
+
+\end{document}
