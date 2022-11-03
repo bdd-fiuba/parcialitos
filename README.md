@@ -1,2 +1,2 @@
-# paricalitos
+# parcialitos
 Repositorio de Parcialitos
