@@ -1,8 +1,8 @@
 [
   {
     $match: {
-      source: /android|iphone/,
-      "place.country": "Argentina",
+      lang: /es|pt/,
+      "place.country": "Brasil",
     },
   },
   {
@@ -17,12 +17,12 @@
         user: "$user",
         created_at: "$created_at.date",
       }},
-      avg_retweets: { $avg: "$retweet_count" },
+      languages: { $addToSet: "$retweet_count" },
     },
   },
   {
     $project: {
-      text: { $ifNull: [{ $arrayElemAt: [{
+      tweet: { $arrayElemAt: [{
         $filter: {
           input: "$tweets",
           as: "reply",
@@ -30,12 +30,12 @@
             $eq: ["$$reply.tweet_id", "$_id"],
           },
         },
-      }, 0 ]}, null ]}, // dejamos en null si no encontramos
+      }, 0 ]},
       replies: { $sortArray: { input: {
         $filter: {
           input: "$tweets",
           as: "reply",
-          cond: {
+          cond: { // eliminamos el mismo tweet
             $ne: ["$$reply.tweet_id", "$_id"],
           },
         },
