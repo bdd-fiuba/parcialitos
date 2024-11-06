@@ -17,7 +17,7 @@
         user: "$user",
         created_at: "$created_at.date",
       }},
-      languages: { $addToSet: "$retweet_count" },
+      avg_retweets: { $avg: "$retweet_count" },
     },
   },
   {
